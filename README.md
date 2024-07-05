@@ -17,3 +17,8 @@ These can be imported from collection.abc
 
 types defined in typing are needed if you need to support Python 3.8 and earlier.
 dynamically typed functions are those without a function type annotation.
+
+## added a git pre-commit hook
+
+In case we want hook to be disble use the flag '--no-verify'
+git commit -m 'test message' --no-verify
