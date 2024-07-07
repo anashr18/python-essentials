@@ -1,6 +1,6 @@
 # python-essentials
 
-[![Pylint](https://github.com/anashr18/python-essentials/actions/workflows/pylint.yml/badge.svg)](https://github.com/anashr18/python-essentials/actions/workflows/pylint.yml)[![Pre-Commit hooks](https://github.com/anashr18/python-essentials/actions/workflows/pre_commit.yml/badge.svg)](https://github.com/anashr18/python-essentials/actions/workflows/pre_commit.yml)
+[![Pylint](https://github.com/anashr18/python-essentials/actions/workflows/pylint.yml/badge.svg)](https://github.com/anashr18/python-essentials/actions/workflows/pylint.yml)[![Pre-Commit](https://github.com/anashr18/python-essentials/actions/workflows/pre_commit.yml/badge.svg)](https://github.com/anashr18/python-essentials/actions/workflows/pre_commit.yml)
 
 Pylint, formatter, pytest, ci, github workflows
 
