@@ -11,7 +11,6 @@ class Circle(Shape):
 
 
 # def add_one(things: list[Shape]) -> None:
-#     things.append(Shape())
 
 
 def add_one(things: Sequence[Shape]) -> None:

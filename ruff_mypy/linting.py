@@ -140,16 +140,13 @@ my_variable = 1
 
 from __future__ import print_function
 
-import os
-import sys
-
 
 def my_function():
     pass
 
 
 if True:
-    import os
+    pass
 
 
 class MyClass:

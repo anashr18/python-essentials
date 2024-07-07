@@ -17,11 +17,9 @@ def foo(arg: list[int]):
 
 
 foo([])  # empty list [] type inferred as list[int]
-# a = []  # mypy error
 a: list[int] = []
 foo(a)
 
 
 variable = "example"
-# print(variable.trim())
 print(variable.trim())  # type: ignore[attr-defined]

@@ -1,5 +1,6 @@
 # See https://pre-commit.com for more information
 # See https://pre-commit.com/hooks.html for more hooks
+
 repos:
   - repo: https://github.com/pre-commit/pre-commit-hooks
     rev: v4.4.0
@@ -9,15 +10,20 @@ repos:
       # Trims trailing whitespace. Allow a single space on the end of .md lines for hard line breaks.
       - id: trailing-whitespace
         args: [--markdown-linebreak-ext=md]
+        exclude: '^ruff_mypy/'
       # Makes sure files end in a newline and only a newline;
       - id: end-of-file-fixer
+        exclude: '^ruff_mypy/'
       # Attempts to load all TOML files to verify syntax.
       - id: check-toml
+        exclude: '^ruff_mypy/'
       # Attempts to load all yaml files to verify syntax; unsafe: only check syntax, do not load yaml
       - id: check-yaml
         args: ["--unsafe"]
+        exclude: '^ruff_mypy/'
       # Check for symlinks that do not point to anything.
       - id: check-symlinks
+        exclude: '^ruff_mypy/'
       # Fail if staged files are above a certain size.
       # To add a large file, use 'git lfs track <file>; git add <file> to track large files with
       # git-lfs rather than commiting them directly to the git history
@@ -38,25 +44,31 @@ repos:
           )
       # Sort requirements in requirements.txt files.
       - id: requirements-txt-fixer
+        exclude: '^ruff_mypy/'
       # Prevent addition of new git submodules.
       - id: forbid-new-submodules
+        exclude: '^ruff_mypy/'
       # Prevent committing directly to trunk (since Bitbucket wants us to pay for this feature)
       - id: no-commit-to-branch
         args: ["--branch=main"]
+        exclude: '^ruff_mypy/'
       # Detects the presence of private keys
       - id: detect-private-key
+        # args: ['.env']
 
   - repo: https://github.com/PyCQA/pylint
     rev: v3.0.0a6
     hooks:
       - id: pylint
         args: [--rcfile=.pylintrc]
+        exclude: '^ruff_mypy/'
 
   - repo: https://github.com/charliermarsh/ruff-pre-commit
     rev: "v0.0.261"
     hooks:
       - id: ruff
         args: [--fix, --exit-non-zero-on-fix, --config=ruff.toml]
+        exclude: '^ruff_mypy/'
 
   - repo: https://github.com/pycqa/isort
     rev: 5.12.0
@@ -64,12 +76,14 @@ repos:
       - id: isort
         name: isort (python)
         args: [--settings=.isort.cfg]
+        exclude: '^ruff_mypy/'
 
   - repo: https://github.com/pre-commit/mirrors-mypy
     rev: "v1.2.0"
     hooks:
       - id: mypy
         args: [--no-strict-optional, --ignore-missing-imports]
+        exclude: '^ruff_mypy/'
 
   - repo: https://github.com/pycqa/flake8
     rev: "6.0.0" # pick a git hash / tag to point to
@@ -79,3 +93,4 @@ repos:
           - radon
           - flake8-docstrings
         args: [--config=.flake8]
+        exclude: '^ruff_mypy/'
