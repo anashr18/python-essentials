@@ -1,4 +1,5 @@
 # python-essentials
+[![Pylint](https://github.com/anashr18/python-essentials/actions/workflows/pylint.yml/badge.svg)](https://github.com/anashr18/python-essentials/actions/workflows/pylint.yml)
 
 Pylint, formatter, pytest, ci, github workflows
 
