@@ -18,3 +18,8 @@ jobs:
       - name: Analysing the code with pylint
         run: |
           pylint --rcfile=.pylintrc $(git ls-files '*.py')
+
+
+# below line is for skipping a no commit to branch ..when actions triggered in github.
+# this skip is not required when we are comminting from a feature branch
+# SKIP=no-commit-to-branch pre-commit run --all-files
