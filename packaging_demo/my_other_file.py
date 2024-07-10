@@ -1,0 +1,2 @@
+CONSTANT = "hi"
+CONSTANT_FOR_NESTED_file = 500

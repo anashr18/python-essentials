@@ -28,3 +28,7 @@ git commit -m 'test message' --no-verify
 ### for eaxample when we commit directly to main branch and skip the hook with id - id: no-commit-to-branch arg ["--branch=main"]
 
 git commit -m 'added pre-commit workflow' --no-verify
+
+## packaging related commands
+
+python setup.py build sdist
