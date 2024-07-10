@@ -1,0 +1,3 @@
+[build-system]
+# minimum requirments to be fulfilled
+requires = ['setuptools', 'wheel', 'numpy']
