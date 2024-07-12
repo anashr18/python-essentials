@@ -33,7 +33,7 @@ In case we want hook to be disble use the flag '--no-verify'
 
 python setup.py build sdist
 
-## build cli &_pyproject.toml & setup.cfg
+## build cli, pyproject.toml & setup.cfg
 
 - Build dependencis are listed in pyproject.toml
 - Package dendencies can come from requirements.txt and can be put with install_requires in setup.py.
