@@ -1,0 +1,2 @@
+include packaging_demo/*.json
+include packaging_demo/my_folder/*.json

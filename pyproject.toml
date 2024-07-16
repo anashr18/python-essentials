@@ -1,13 +1,35 @@
 [build-system]
-# minimum requirments to be fulfilled
-requires = ['setuptools', 'wheel', 'numpy']
-
-# pyproject.toml
-
-# [build-system]
-# # Minimum requirements for the build system to execute.
-# requires = ["setuptools>=61.0.0", "wheel"]
+requires = ["setuptools>=40.8.0", "wheel"]
 build-backend = "setuptools.build_meta"
+
+[project]
+name = "packaging-demo-anashr"
+version = "0.0.3"
+authors = [{ name = "Yug", email = "yugg@test.edu" }]
+description = "Demo for packaging"
+readme = "README.md"
+keywords = ["one", "two"]
+license = { text = "Apache" }
+dependencies = ["numpy"]
+
+[project.optional-dependencies]
+test = ['pytest', 'pytest-cov']
+release = ['build', 'twine']
+dev = ['packaging_demo[test, release]']
+
+[tool.setuptools]
+# Letting setuptools automatically discover packages if not explicitly specified
+
+[tool.setuptools.packages.find]
+# Search the current directory
+where = ["."]
+# Include all packages under 'packaging_demo'
+include = ["packaging_demo*", "packaging_demo.*"]
+exclude = []                                      # You can specify patterns to exclude certain packages
+namespaces = false                                # Disable PEP 420 namespace packages if not needed
+
+[tool.setuptools.package-data]
+mypkg = ["*.json"]
 
 [tool.black]
 line-length = 119
@@ -15,7 +37,17 @@ line-length = 119
 
 [tool.flake8]
 docstring-convention = "all"
-ignore = ["D107", "D212", "E501", "W503", "W605", "D203", "D100"]
+ignore = [
+    "D104",
+    "D100",
+    "D107",
+    "D212",
+    "E501",
+    "W503",
+    "W605",
+    "D203",
+    "D100",
+]
 exclude = ["venv"]
 max-line-length = 99
 
@@ -38,6 +70,10 @@ disable = [
     "import-error",
     "too-few-public-methods",
     "redefined-outer-name",
+    'missing-module-docstring',
+    'pointless-statement',
+    'invalid-name',
+    'undefined-variable',
 ]
 
 [tool.ruff]

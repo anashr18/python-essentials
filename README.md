@@ -44,3 +44,20 @@ build dependecies.**
     ``pip install -e .``
 - [setup.cfg](setup.cfg) carries all the config for setup.py. check its syntax and documenatation at
     [setuptools](https://setuptools.pypa.io/en/latest/userguide/package_discovery.html)
+
+## removing setup.cfg with build-backend and PEP 517
+
+building only with pyproject.toml
+python -m build --sdist --wheel ./
+
+## adding data files with MANIFEST.in
+
+[MANIFEST.in](MANIFEST)
+[MANIFEST DOCS](https://setuptools.pypa.io/en/latest/userguide/miscellaneous.html)
+
+### use toml without MANIFEST
+
+[tool.setuptools.package-data]
+mypkg = ["*.json"]
+
+## Dependency Graphs

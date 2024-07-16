@@ -60,14 +60,14 @@ repos:
     rev: v3.0.0a6
     hooks:
       - id: pylint
-        args: [--rcfile=.pylintrc]
+        args: [--rcfile=pyproject.toml]
         exclude: '^ruff_mypy/'
 
   - repo: https://github.com/charliermarsh/ruff-pre-commit
     rev: "v0.0.261"
     hooks:
       - id: ruff
-        args: [--fix, --exit-non-zero-on-fix, --config=ruff.toml]
+        args: [--fix, --exit-non-zero-on-fix, --config=pyproject.toml]
         exclude: '^ruff_mypy/'
 
   - repo: https://github.com/pycqa/isort
@@ -75,7 +75,7 @@ repos:
     hooks:
       - id: isort
         name: isort (python)
-        args: [--settings=.isort.cfg]
+        args: [--settings=pyproject.toml]
         exclude: '^ruff_mypy/'
 
   - repo: https://github.com/pre-commit/mirrors-mypy
@@ -92,5 +92,5 @@ repos:
         additional_dependencies:
           - radon
           - flake8-docstrings
-        args: [--config=.flake8]
+        args: [--config=pyproject.toml]
         exclude: '^ruff_mypy/'
