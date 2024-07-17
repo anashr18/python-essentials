@@ -32,22 +32,13 @@ namespaces = false                                # Disable PEP 420 namespace pa
 mypkg = ["*.json"]
 
 [tool.black]
-line-length = 119
-# exclude = ["venv"]
+line-length = 99
+exclude = '/(\.git|\.hg|\.mypy_cache|\.tox|\.venv|_build|buck-out|build|dist|pyproject\.toml)/'
+
 
 [tool.flake8]
 docstring-convention = "all"
-ignore = [
-    "D104",
-    "D100",
-    "D107",
-    "D212",
-    "E501",
-    "W503",
-    "W605",
-    "D203",
-    "D100",
-]
+ignore = ["D100", "D103", "D104", "D107", "D212", "E501", "W503", "W605", "D203"]
 exclude = ["venv"]
 max-line-length = 99
 
@@ -62,19 +53,8 @@ line_length = 99
 
 
 [tool.pylint."messages control"]
-disable = [
-    "line-too-long",
-    "trailing-whitespace",
-    "missing-function-docstring",
-    "consider-using-f-string",
-    "import-error",
-    "too-few-public-methods",
-    "redefined-outer-name",
-    'missing-module-docstring',
-    'pointless-statement',
-    'invalid-name',
-    'undefined-variable',
-]
+disable = ["line-too-long", "trailing-whitespace", "missing-function-docstring", "consider-using-f-string", "import-error", "too-few-public-methods", "redefined-outer-name", 'missing-module-docstring', 'pointless-statement', 'invalid-name', 'undefined-variable']
+
 
 [tool.ruff]
 # Enable flake8-bugbear (`B`) rules.

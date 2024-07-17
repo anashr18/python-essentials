@@ -60,4 +60,19 @@ python -m build --sdist --wheel ./
 [tool.setuptools.package-data]
 mypkg = ["*.json"]
 
-## Dependency Graphs
+## run.sh task runner
+
+/bin/bash run.sh release:test  
+
+## issue wit flake8 + pre-commit config + pyproject.toml
+
+```entry: pflake8
+        additional_dependencies:
+          - pyproject-flake8
+```
+
+## CI - Github action workflow
+
+- create a [publish.yaml](Publish.yaml)
+- read about [contexts](https://docs.github.com/en/actions/learn-github-actions/contexts).
+- variables, expression and secrets can be found in the above docs.
