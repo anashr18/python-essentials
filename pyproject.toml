@@ -1,10 +1,10 @@
 [build-system]
-requires = ["setuptools>=40.8.0", "wheel"]
+requires = ["setuptools", "wheel"]
 build-backend = "setuptools.build_meta"
 
 [project]
 name = "packaging-demo-anashr"
-version = "0.0.4"
+version = "0.0.5"
 authors = [{ name = "Yug", email = "yugg@test.edu" }]
 description = "Demo for packaging"
 readme = "README.md"
@@ -15,7 +15,8 @@ dependencies = ["numpy"]
 [project.optional-dependencies]
 test = ['pytest', 'pytest-cov']
 release = ['build', 'twine']
-dev = ['packaging-demo-anashr[test, release]']
+static-code-qa = ['pre-commit']
+dev = ['packaging-demo-anashr[test, release, static-code-qa]']
 
 [tool.setuptools]
 # Letting setuptools automatically discover packages if not explicitly specified
