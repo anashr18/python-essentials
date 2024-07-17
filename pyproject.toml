@@ -15,7 +15,7 @@ dependencies = ["numpy"]
 [project.optional-dependencies]
 test = ['pytest', 'pytest-cov']
 release = ['build', 'twine']
-dev = ['packaging_demo[test, release]']
+dev = ['packaging-demo-anashr[test, release]']
 
 [tool.setuptools]
 # Letting setuptools automatically discover packages if not explicitly specified
