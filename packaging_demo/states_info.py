@@ -11,7 +11,6 @@ def is_city_capitol_of_state(city_name: str, state: str) -> bool:
     cities_json = CITIES_JSON_PATH.read_text()
     cities: List[dict] = json.loads(cities_json)
     matching_cities: List[dict] = [city for city in cities if city["city"] == city_name]
-    # print(matching_cities)
     if len(matching_cities) == 0:
         return False
     matching_city_dict = matching_cities[0]

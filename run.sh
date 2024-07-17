@@ -38,7 +38,7 @@ function publish:prod {
         --password="$TEST_PYPI_TOKEN"
 }
 function release:test {
-    # lint
+    lint
     # clean
     build
     publish:test
