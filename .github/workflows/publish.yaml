@@ -9,57 +9,113 @@ on:
   workflow_dispatch:
 
 jobs:
-  build-test-and-publish:
+  check-version-txt:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-        # set for bringing the tag inforation for all teh branches
+        # set for bringing the tag inforation for all branches
         # use it with caution when git is large
         with:
           fetch-depth: 0
+      - name: Tag the release version
+        run: |
+          git tag $(cat version.txt)
+  lint-format-and-static-code-quality-checks:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
       - name: Set up Python 3.8
         uses: actions/setup-python@v3
         with:
           python-version: 3.8
-      - name: Tag the release version
+      - name: Install pre-commit
         run: |
-          git tag some-tag
-      - name: Install python dependencies
-        run: |
-          /bin/bash -x run.sh install
+          pip install pre-commit
       - name: Lint, format, and other static code quality check
         run: |
           /bin/bash -x run.sh lint:ci
+
+  build-sdist-wheel:
+    # needs:
+    #   - lint-format-and-static-code-quality-checks
+    #   - check-version-txt
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Set up Python 3.8
+        uses: actions/setup-python@v3
+        with:
+          python-version: 3.8
+      # cache setup for github actions
+      # https://github.com/actions/cache/blob/main/examples.md#python---pip
+      # calculating hashcodes for requirements and pyproject.toml -anychanges will create a new key
+      - name: Cache
+        uses: actions/cache@v3
+        with:
+          path: ~/.cache/pip
+          key: ${{ runner.os }}-pip-${{ hashFiles('**/requirements.txt', '**/pyproject.toml') }}
+          restore-keys: |
+            ${{ runner.os }}-pip-
+      - name: Install build cli
+        run: |
+          pip install build
+
       - name: Build python package
         run: |
           /bin/bash -x run.sh build
-      - name: publish to Test Pypi
+      # https://github.com/actions/upload-artifact
+      - name: Upload dist foler and package artifacts
+        uses: actions/upload-artifact@v4
+        with:
+          name: wheel-and-sdist
+          path: ./dist/*
+
+  publish:
+    needs:
+      - build-sdist-wheel
+      - lint-format-and-static-code-quality-checks
+      - check-version-txt
+    runs-on: ubuntu-latest
+    if: github.event_name == 'push' && github.ref == 'refs/head/main'
+    steps:
+      - uses: actions/checkout@v4
+      - name: Set up Python 3.8
+        uses: actions/setup-python@v3
+        with:
+          python-version: 3.8
+
+      # https://github.com/actions/download-artifact
+      - name: Download dist
+        uses: actions/download-artifact@v4
+        with:
+          path: ./dist/
+      - name: Display structure of downloaded files
+        run: ls -R ./dist/
+
+      - name: Install twine
+        run: |
+          pip install twine
+
+      - name: Publish to Test Pypi
         #  if this a push event
         if: github.event_name == 'push' && github.ref == 'refs/head/main'
         run: |
           /bin/bash -x run.sh publish:test
         env:
           TEST_PYPI_TOKEN: ${{ secrets.TEST_PYPI_TOKEN}}
-      # - name: publish to Prod Pypi
-      #   if: github.event_name == 'push' && github.ref == 'refs/head/main'
-      #   run: |
-      #     /bin/bash -x run.sh publish:PROD
-      #   env:
-      #     PROD_PYPI_TOKEN: ${{ secrets.PROD_PYPI_TOKEN}}
+
+      - name: publish to Prod Pypi
+        if: github.event_name == 'push' && github.ref == 'refs/head/main'
+        run: |
+          /bin/bash -x run.sh publish:PROD
+        env:
+          PROD_PYPI_TOKEN: ${{ secrets.PROD_PYPI_TOKEN}}
       - name: Push Tags
         if: github.event_name == 'push' && github.ref == 'refs/head/main'
         run: |
           git push origin --tags
-      # - name: Install dependencies
-      #   run: |
-      #     python -m pip install --upgrade pip
-      #     pip install pre-commit
-      # - name: pre-commit configuration picks config from pyproject.toml
-      #   run: |
-      #     SKIP=no-commit-to-branch pre-commit run --all-file
 
   # https://docs.github.com/en/actions/learn-github-actions/contexts
-
   dump_contexts_to_log:
     runs-on: ubuntu-latest
     steps:

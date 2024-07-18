@@ -81,3 +81,15 @@ mypkg = ["*.json"]
 
  -By default, the package installer is looking in TestPyPI for all dependencies, including setuptools, which might not be available on TestPyPI. You can direct pip to use the main PyPI as an additional source for packages that aren't available on TestPyPI by modifying the install command as follows:
   ```pip install --extra-index-url https://pypi.org/simple your-package-nam```
+
+## capturing action event details from payload in workflow
+
+for example below code checks push event into main branch
+```if: github.event_name == 'push' && github.ref == 'refs/head/main'```
+
+## locking requirements
+
+they add metadata to the dependency tree
+pipenv
+piptools
+poetry
