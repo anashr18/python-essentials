@@ -83,7 +83,7 @@ repos:
     hooks:
       - id: mypy
         args: [--no-strict-optional, --ignore-missing-imports]
-        exclude: '^ruff_mypy/'
+        exclude: '^update_pyproject_version'
 
   - repo: https://github.com/pycqa/flake8
     rev: "7.0.0" # pick a git hash / tag to point to

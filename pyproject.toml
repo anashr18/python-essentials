@@ -4,14 +4,14 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "packaging-demo-anashr"
-# version = "0.0.5"
+version = "0.0.6"
 authors = [{ name = "Yug", email = "yugg@test.edu" }]
 description = "Demo for packaging"
 readme = "README.md"
 keywords = ["one", "two"]
 license = { text = "Apache" }
 dependencies = ["numpy"]
-dynamic = ['version']
+# dynamic = ['version']
 
 [project.optional-dependencies]
 test = ['pytest', 'pytest-cov']
@@ -55,7 +55,7 @@ line_length = 99
 
 
 [tool.pylint."messages control"]
-disable = ["line-too-long", "trailing-whitespace", "missing-function-docstring", "consider-using-f-string", "import-error", "too-few-public-methods", "redefined-outer-name", 'missing-module-docstring', 'pointless-statement', 'invalid-name', 'undefined-variable']
+disable = ["line-too-long", "trailing-whitespace", "missing-function-docstring", "consider-using-f-string", "import-error", "too-few-public-methods", "redefined-outer-name", 'missing-module-docstring', 'pointless-statement', 'invalid-name', 'undefined-variable', 'unspecified-encoding']
 
 
 [tool.ruff]
