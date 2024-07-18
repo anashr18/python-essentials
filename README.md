@@ -1,6 +1,6 @@
 # python-essentials
 
-[![Pre-Commit](https://github.com/anashr18/python-essentials/actions/workflows/pre_commit.yml/badge.svg)](https://github.com/anashr18/python-essentials/actions/workflows/pre_commit.yml)[![Build, Test and Publish](https://github.com/anashr18/python-essentials/actions/workflows/publish.yaml/badge.svg)](https://github.com/anashr18/python-essentials/actions/workflows/publish.yaml)
+[![Build, Test and Publish](https://github.com/anashr18/python-essentials/actions/workflows/publish.yaml/badge.svg)](https://github.com/anashr18/python-essentials/actions/workflows/publish.yaml)[![Build, Test and Publish](https://github.com/anashr18/python-essentials/actions/workflows/publish.yaml/badge.svg)](https://github.com/anashr18/python-essentials/actions/workflows/publish.yaml)
 
 Pylint, formatter, pytest, ci, github workflows
 
@@ -76,3 +76,8 @@ mypkg = ["*.json"]
 - create a [publish.yaml](Publish.yaml)
 - read about [contexts](https://docs.github.com/en/actions/learn-github-actions/contexts).
 - variables, expression and secrets can be found in the above docs.
+
+### Add PyPI as an Additional Index:
+
+ -By default, the package installer is looking in TestPyPI for all dependencies, including setuptools, which might not be available on TestPyPI. You can direct pip to use the main PyPI as an additional source for packages that aren't available on TestPyPI by modifying the install command as follows:
+  ```pip install --extra-index-url https://pypi.org/simple your-package-nam```
