@@ -4,13 +4,14 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "packaging-demo-anashr"
-version = "0.0.5"
+# version = "0.0.5"
 authors = [{ name = "Yug", email = "yugg@test.edu" }]
 description = "Demo for packaging"
 readme = "README.md"
 keywords = ["one", "two"]
 license = { text = "Apache" }
 dependencies = ["numpy"]
+dynamic = ['version']
 
 [project.optional-dependencies]
 test = ['pytest', 'pytest-cov']

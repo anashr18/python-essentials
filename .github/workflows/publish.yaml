@@ -104,12 +104,12 @@ jobs:
         env:
           TEST_PYPI_TOKEN: ${{ secrets.TEST_PYPI_TOKEN}}
 
-      - name: publish to Prod Pypi
-        if: github.event_name == 'push' && github.ref == 'refs/head/main'
-        run: |
-          /bin/bash -x run.sh publish:PROD
-        env:
-          PROD_PYPI_TOKEN: ${{ secrets.PROD_PYPI_TOKEN}}
+      # - name: publish to Prod Pypi
+      #   if: github.event_name == 'push' && github.ref == 'refs/head/main'
+      #   run: |
+      #     /bin/bash -x run.sh publish:PROD
+      #   env:
+      #     PROD_PYPI_TOKEN: ${{ secrets.PROD_PYPI_TOKEN}}
       - name: Push Tags
         if: github.event_name == 'push' && github.ref == 'refs/head/main'
         run: |
