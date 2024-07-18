@@ -55,7 +55,7 @@ line_length = 99
 
 
 [tool.pylint."messages control"]
-disable = ["line-too-long", "trailing-whitespace", "missing-function-docstring", "consider-using-f-string", "import-error", "too-few-public-methods", "redefined-outer-name", 'missing-module-docstring', 'pointless-statement', 'invalid-name', 'undefined-variable']
+disable = ["line-too-long", "trailing-whitespace", "missing-function-docstring", "consider-using-f-string", "import-error", "too-few-public-methods", "redefined-outer-name", 'missing-module-docstring', 'pointless-statement', 'invalid-name', 'undefined-variable', 'unspecified-encoding']
 
 
 [tool.ruff]
